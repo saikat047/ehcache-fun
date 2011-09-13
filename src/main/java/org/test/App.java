@@ -26,18 +26,23 @@ public class App {
     cache.put(new Element(1, now));
     cache.put(new Element(2, before));
 
-    dumpCacheInfo(cache);
-
     out.println("value found with key 1: " + cache.get(1).getObjectValue());
     out.println("value found with key 2: " + cache.get(2).getObjectValue());
+    sleepForOneSeconds();
+    out.println("value found with key 3: " + cache.get(3));
+    dumpCacheInfo(cache);
+    cache.remove(1);
+    cache.get(1);
+    sleepForOneSeconds();
+    dumpCacheInfo(cache);
+  }
+
+  private void sleepForOneSeconds() {
     try {
       Thread.sleep(1000);
     } catch (InterruptedException e) {
       e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
     }
-    out.println("value found with key 3: " + cache.get(3));
-
-    dumpCacheInfo(cache);
   }
 
   private void dumpCacheInfo(final Ehcache cache) {
